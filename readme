@@ -1,0 +1,27 @@
+# Heap Data Structures: Implementation, Analysis, and Applications
+
+##  Overview
+This project explores heap-based data structures through the implementation of:
+- **Heapsort** for efficient in-place sorting
+- **Priority Queue** for task scheduling
+
+It includes analysis of algorithmic complexity and empirical performance comparisons with Quicksort and Merge Sort.
+
+---
+
+##  Contents
+
+- `heapsort.py` — Heapsort implementation using a max-heap.
+- `priority_queue.py` — Priority Queue implemented via a min-heap with task scheduling.
+- `benchmark.py` — Empirical tests comparing sorting algorithms.
+- `heap_data_structures_report.docx` — Detailed report covering design, analysis, and results.
+- `README.md` — This file.
+
+---
+
+##  How to Run
+
+1. **Clone the repository:**
+   ```bash
+   git clone <your_repo_url>
+   cd <repo_folder>

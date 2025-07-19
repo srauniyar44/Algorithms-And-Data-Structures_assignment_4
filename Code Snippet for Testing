@@ -1,0 +1,47 @@
+import time
+import random
+
+def quicksort(arr):
+    if len(arr) <= 1: return arr
+    pivot = arr[0]
+    less = [x for x in arr[1:] if x <= pivot]
+    greater = [x for x in arr[1:] if x > pivot]
+    return quicksort(less) + [pivot] + quicksort(greater)
+
+def mergesort(arr):
+    if len(arr) <= 1: return arr
+    mid = len(arr) // 2
+    L = mergesort(arr[:mid])
+    R = mergesort(arr[mid:])
+    return merge(L, R)
+
+def merge(left, right):
+    result = []
+    while left and right:
+        if left[0] <= right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    result += left + right
+    return result
+
+def benchmark(sort_fn, arr):
+    start = time.time()
+    sort_fn(arr.copy())
+    return time.time() - start
+
+sizes = [1000, 5000, 10000]
+distributions = {
+    'random': lambda n: random.sample(range(n*2), n),
+    'sorted': lambda n: list(range(n)),
+    'reversed': lambda n: list(range(n, 0, -1)),
+}
+
+for n in sizes:
+    print(f"\nSize: {n}")
+    for dist_name, dist_fn in distributions.items():
+        data = dist_fn(n)
+        print(f"  {dist_name}:")
+        print(f"    Heapsort: {benchmark(heapsort, data):.6f} sec")
+        print(f"    Quicksort: {benchmark(quicksort, data):.6f} sec")
+        print(f"    Mergesort: {benchmark(mergesort, data):.6f} sec")
